@@ -22,17 +22,14 @@ app.get('/app.js', function(req, res){ res.sendFile(web_path + '/app.js'); });
 //
 io.on('connection', function(socket) {
     players.set(socket, new Player(socket));
-    console.log(`Hello, there are now ${players.size} players`);
+    console.log(`-> There are now ${players.size} players`);
 
     socket.on('disconnect', function() {
         const pl = players.get(socket);
         players.delete(socket);
-        if (pl.nickname !== "") {
-            io.emit('user leave', pl.nickname);
-            console.log(`There are now ${players.size} players`);
-        }
-        else {
-            console.log(`Goodbye ${pl.nickname}, there are now ${players.size} players`);
+        if (pl.nickname === "") {
+            sendMessage('user', 'leave', pl.nickname);
+            console.log(`<- There are now ${players.size} players`);
         }
     });
     socket.on('user nickname', function(data) {
