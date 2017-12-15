@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>SHAGS - Chat</title>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Self-Hosted Awesome Game Software - A free and open source party game server built with customization in mind in order to put you in complete control of the games you play">
+        <meta name="author"      content="https://me.nektro.net/">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="./app.min.css">
+
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"                         integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"                 integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"                       integrity="sha384-1q57pfXLwPbzVVRAwqo5n8j8Gv7dStrYiNewqi8sOISrKZfKN/qZf9Z1uqwunaWX" crossorigin="anonymous"></script>
+        <script defer src="./app.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="./">SHAGS - Chat</a>
+            </nav>
+        </header>
+        <br>
+        <main>
+            <section id="login">
+                <div class="container">
+                <h1>Join the Chat</h1>
+                    <hr>
+                    <form action="" method="post" name="send_nickname">
+                        <label for="nickname">What's your nickname?</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nickname" placeholder="Nickname?" required>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary">Enter</button>
+                    </form>
+                </div>
+            </section>
+            <section id="chat">
+                <table>
+                    <tbody id="messages"></tbody>
+                </table>
+                <form action="" method="post" name="send_message">
+                    <input name="msg_text" autocomplete="off" /><button>Send</button>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

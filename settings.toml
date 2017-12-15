@@ -1,0 +1,4 @@
+# This is the main configuation document for this server.
+
+[server]
+port = 80
