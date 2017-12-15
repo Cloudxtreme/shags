@@ -20,6 +20,11 @@ app.get('/app.min.css', function(req, res){ res.sendFile(web_path + '/app.min.cs
 app.get('/app.js', function(req, res){ res.sendFile(web_path + '/app.js'); });
 
 //
+function sendMessage(app, event, data) {
+    io.emit('shags_message', { app, event, data });
+}
+
+//
 io.on('connection', function(socket) {
     players.set(socket, new Player(socket));
     console.log(`-> There are now ${players.size} players`);
@@ -32,12 +37,28 @@ io.on('connection', function(socket) {
             console.log(`<- There are now ${players.size} players`);
         }
     });
-    socket.on('user nickname', function(data) {
-        players.get(socket).nickname = data;
-        io.emit('user join', data);
-    });
-    socket.on('chat message', function(data) {
-        io.emit('chat message', { from:players.get(socket).nickname, message:data });
+    socket.on('shags_message', function(message) {
+        switch (message.app) {
+            case 'user': {
+                switch (message.event) {
+                    case 'nickname': {
+                        players.get(socket).nickname = message.data;
+                        sendMessage('user', 'join', message.data);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 'chat': {
+                switch (message.event) {
+                    case 'new_message': {
+                        sendMessage('chat', 'new_message', { from:players.get(socket).nickname, message:message.data });
+                        break;
+                    }
+                }
+                break;
+            }
+        }
     })
 });
 
