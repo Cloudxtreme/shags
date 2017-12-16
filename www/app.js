@@ -15,7 +15,7 @@ function makeElement(tag, attrs=[], text) {
 //
 (function() {
     const socket = io();
-
+    
     function sendMessage(app, event, data) {
         socket.emit('shags_message', { app, event, data });
     }
@@ -37,41 +37,36 @@ function makeElement(tag, attrs=[], text) {
         });
         socket.on('shags_message', function(message) {
             switch (message.app) {
-                case 'user': {
+                case 'user': return (() => {
                     switch (message.event) {
-                        case 'join': {
+                        case 'join': return (() => {
                             msg_list.insertBefore(makeElement('tr', [['class','user-join']], [
                                 makeElement('td', [], [
                                     makeElement('span', [['class','material-icons']], 'fast_forward')
                                 ]),
                                 makeElement('td', [], `${message.data} joined the group`)
                             ]), msg_list.firstChild);
-                            break;
-                        }
-                        case 'leave': {
+                        })();
+                        case 'leave': return (() => {
                             msg_list.insertBefore(makeElement('tr', [['class','user-leave']], [
                                 makeElement('td', [], [
                                     makeElement('span', [['class','material-icons']], 'fast_rewind')
                                 ]),
                                 makeElement('td', [], `${message.data} left the group`)
                             ]), msg_list.firstChild);
-                            break;
-                        }
+                        })();
                     }
-                    break;
-                }
-                case 'chat': {
+                })();
+                case 'chat': return (() => {
                     switch (message.event) {
-                        case 'new_message': {
+                        case 'new_message': return (() => {
                             msg_list.insertBefore(makeElement('tr', [], [
                                 makeElement('td', [], message.data.from),
                                 makeElement('td', [], message.data.message)
                             ]), msg_list.firstChild);
-                            break;
-                        }
+                        })();
                     }
-                    break;
-                }
+                })();
             }
         });
     });

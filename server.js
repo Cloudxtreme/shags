@@ -39,25 +39,21 @@ io.on('connection', function(socket) {
     });
     socket.on('shags_message', function(message) {
         switch (message.app) {
-            case 'user': {
+            case 'user': return (() => {
                 switch (message.event) {
-                    case 'nickname': {
+                    case 'nickname': return (() => {
                         players.get(socket).nickname = message.data;
                         sendMessage('user', 'join', message.data);
-                        break;
-                    }
+                    })();
                 }
-                break;
-            }
-            case 'chat': {
+            })();
+            case 'chat': return (() => {
                 switch (message.event) {
-                    case 'new_message': {
+                    case 'new_message': return (() => {
                         sendMessage('chat', 'new_message', { from:players.get(socket).nickname, message:message.data });
-                        break;
-                    }
+                    })();
                 }
-                break;
-            }
+            })();
         }
     })
 });
