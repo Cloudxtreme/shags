@@ -1,0 +1,70 @@
+section {
+    &#chat {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font: 13px Helvetica, Arial;
+        }
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+
+            input {
+                border: 0;
+                padding: 10px;
+                margin-right: .5%;
+                flex-grow: 1;
+            }
+            button {
+                background: rgb(130, 224, 255);
+                border: none;
+                padding: 10px;
+            }
+        }
+        table {
+            width: 100%;
+        }
+        #messages {
+            display: flex;
+            flex-direction: column;
+
+            div[tr] {
+                display: flex;
+                
+                div[td] {
+                    padding: 10px;
+                    text-align: left;
+                    border: 1px solid #333;
+                    
+                    &.user-join,
+                    &.user-join ~ div[td] {
+                        color: green;
+                    }
+                    &.user-leave,
+                    &.user-leave ~ div[td] {
+                        color: red;
+                    }
+                    & ~ div[td] {
+                        border-left: 0px;
+                        flex-grow: 1;
+                    }
+                    &:first-child {
+                        font-weight: bold;
+                    }
+                }
+                & ~ div[tr] {
+                    div[td] {
+                        border-top: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
