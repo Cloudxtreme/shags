@@ -1,0 +1,9 @@
+(
+    section[id="chat"](
+        div[id="messages"]
+        form[action="",method="post",name="send_message"](
+            input[name="msg_text",autocomplete="off"]
+            button("Send")
+        )
+    )
+)

@@ -1,0 +1,14 @@
+(
+    section[id="select_game"](
+        div[class="container"](
+            form[action="",method="post",name="game_select"](
+                div[class="input-group"](
+                    span[class="input-group-addon"](
+                        input[type="radio",name="game",value="chat"]
+                    )
+                    span[class="form-control"]("Chat")
+                )
+            )
+        )
+    )
+)

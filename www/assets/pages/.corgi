@@ -1,0 +1,16 @@
+(
+    section[id="select_nickname"](
+        div[class="container"](
+            h1("Give yourself a nickname")
+            hr
+            form[action="",method="post",name="send_nickname"](
+                label[for="nickname"]("What's your nickname?")
+                div[class="input-group"](
+                    input[type="text",class="form-control",name="nickname",placeholder="Nickname?",required="",autocomplete="off"]
+                )
+                br
+                button[class="btn btn-primary"]("Enter")
+            )
+        )
+    )
+)
